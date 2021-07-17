@@ -1,9 +1,54 @@
 ---
 title: Welcome
 layout: base
+pagination: 
+ data: collections.photos
+ size: 10
+ alias: photos
 ---
-<p>
-    Pet photos from
-    <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
-        Unsplash
-    </a>
+
+
+<body>
+    {% if page.url == '/' %}
+    {% include nav.html %}
+    {% endif %}
+
+    <h2>Welcome</h2>
+    <p>Welcome to our website. This site contains professionally photographed pictures of pets, such as dogs, cats, and rats.
+        Click on one of the links to view a photo about that pet.
+    </p>
+    <p>There you will also see a description of the following</p>
+    <ul>
+        <li>Photographer userame</li>
+        <li>Camera model used</li>
+        <li>A link to the full size image</li>
+    </ul>
+    <p>
+        Pet photos from
+        <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+            Unsplash
+        </a>
+    </p>
+
+    
+    <div>
+        {% for photo in photos %}
+        <li>
+            <a href="{{ photo.url }}">
+                A {{ photo.data.photo_keyword }} photo
+                by {{ photo.data.photographer_first_name}} {{ photo.data.photographer_last_name }}
+            </a>
+        </li>
+        {% endfor %}
+    </div>
+
+
+    {% if pagination.href.previous %}
+<a href="{{ pagination.href.previous}} ">Previous Page</a>
+{% endif %}
+{% if pagination.href.next %}
+<a href="{{pagination.href.next}}">Next Page</a>
+{% endif %}
+
+   
+</body>

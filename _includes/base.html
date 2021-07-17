@@ -1,28 +1,45 @@
 ---
 site: Pet Photos
 ---
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <title>Document</title>
 </head>
-<body>
+
+
+
+<body style="background-color: {{hex}};">
+
 
     <h1>{{ site }}</h1>
 
     {% unless page.url == '/' %}
     	<a href="/">Home</a>
-    {% endunless %}
+    
+        {% endunless %}
 
     {{ content }}
-
-    <ul>
-        {% for photo in collections.photos %}
-            <li>
-                <a href="{{ photo.url }}">
-                    A {{ photo.data.photo_keyword }} photo
-                    by {{ photo.data.photographer_first_name}} {{ photo.data.photographer_last_name }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-
+    {% unless photos %}
+    <div>
+   
+    <figure>
+        <figcaption> Type of camera used: {{ exif_camera_model }} </figcaption>
+        <figcaption>Photographers Username: <strong>{{ photographer_username }}</strong></figcaption>
+        <figcaption>Click on the link to be taken to full size photo <a href="{{ photo_image_url }}" target="_blank">View Photo</a></figcaption>
+     </figure>
+   
+    </div>
+    {% endunless %}
+    <footer>
+        <p>Site Created by Alfredo Alcantar, Arsal Khan, Josephine Overbeek, Pedro Hernandez</p>
+        <p>Contact: <a href="mailto:Group3@csu.fullerton.edu.com">Group3@csu.fullerton.edu.com</a></p>
+    </footer>
 </body>
+
+
+</html>

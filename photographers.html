@@ -1,0 +1,27 @@
+---
+site: Pet Photos
+---
+
+<body>
+    {% unless page.url == '/' %}
+    	<a href="/">Home</a>
+{% endunless %}
+
+    <h1> {{ site }}</h1>
+
+    <p>Here is a list of the photographers responsible for the wonderful pictures of the pets we have on our website. </p>
+
+
+   
+    <ul>
+        {% for photo in collections.photos %}
+            <li>
+                
+                {{ photo.data.photographer_first_name}} {{ photo.data.photographer_last_name }}
+                
+            </li>
+            {% endfor %}
+        
+    </ul>
+
+</body>
